@@ -3,6 +3,16 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
+  let [modal, setModal] = useState(false);
+
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
   let [title, setTitle] = useState([
     "남자 코트 추천",
     "강남 우동맛집",
@@ -57,6 +67,13 @@ function App() {
             >
               Change Collection
             </button>
+            <button
+              onClick={() => {
+                openModal();
+              }}
+            >
+              Detail
+            </button>
           </li>
           <li>
             <div>
@@ -79,6 +96,23 @@ function App() {
             <div>2월 18일 발행</div>
           </li>
         </ul>
+
+        <div className={modal ? "open_item_modal" : "item_modal"}>
+          <div className="container">
+            <p>제목: </p>
+            <p>상세내용: </p>
+            <span>날짜: 2월 18일</span>
+            <div>
+              <button
+                onClick={() => {
+                  closeModal();
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
